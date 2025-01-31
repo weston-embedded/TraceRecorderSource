@@ -33,19 +33,23 @@ extern volatile uint32_t uiTraceSystemState;
 
 #define TRACE_KERNEL_VERSION 0x2AA2
 
-#undef TRC_TICK_RATE_HZ
-#undef TRC_HWTC_TYPE
-#undef TRC_HWTC_COUNT
-#undef TRC_HWTC_PERIOD
-#undef TRC_HWTC_DIVISOR
-#undef TRC_HWTC_FREQ_HZ
+#ifndef TRC_HWTC_TYPE
+#define TRC_HWTC_TYPE       TRC_FREE_RUNNING_32BIT_INCR
+#endif
+#ifndef TRC_HWTC_COUNT
+#define TRC_HWTC_COUNT      CPU_TS_TmrRd()
+#endif
+#ifndef TRC_HWTC_PERIOD
+#define TRC_HWTC_PERIOD     1
+#endif
+#ifndef TRC_HWTC_DIVISOR
+#define TRC_HWTC_DIVISOR    1
+#endif
+#ifndef TRC_HWTC_FREQ_HZ
+#define TRC_HWTC_FREQ_HZ    CPU_TS_TmrFreq_Hz
+#endif
 
 #define TRC_TICK_RATE_HZ    OS_TICKS_PER_SEC
-#define TRC_HWTC_TYPE       TRC_FREE_RUNNING_32BIT_INCR
-#define TRC_HWTC_COUNT      CPU_TS_TmrRd()
-#define TRC_HWTC_PERIOD     1
-#define TRC_HWTC_DIVISOR    1
-#define TRC_HWTC_FREQ_HZ    CPU_TS_TmrFreq_Hz
 
 /**
  * @def TRACE_CPU_CLOCK_HZ
