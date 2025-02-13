@@ -961,10 +961,6 @@ void prvTraceOnEnd(void);
 #define OS_TRACE_TMR_CREATE(p_tmr, p_name, dly, period) \
     xTraceObjectRegisterWithoutHandle2(PSF_EVENT_TMR_CREATE, p_tmr, (CPU_CHAR *)p_name, dly, period);
 
-#undef  OS_TRACE_TMR_CREATE_FAILED
-#define  OS_TRACE_TMR_CREATE_FAILED(p_tmr) \
-    xTraceEventCreate0(PSF_EVENT_TMR_CREATE_FAILED);
-
 #undef OS_TRACE_TMR_DEL
 #define OS_TRACE_TMR_DEL(p_tmr) \
     xTraceObjectUnregisterWithoutHandle(PSF_EVENT_TMR_DELETE, (void *)p_tmr, 0);
@@ -1301,6 +1297,9 @@ void prvTraceOnEnd(void);
 
 #undef OS_TRACE_TMR_CREATE
 #define OS_TRACE_TMR_CREATE(p_tmr, p_name, dly, period)
+
+#undef OS_TRACE_TMR_DEL
+#define OS_TRACE_TMR_DEL(p_tmr)
 
 #undef OS_TRACE_TMR_EXPIRED
 #define OS_TRACE_TMR_EXPIRED(p_tmr)
