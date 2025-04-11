@@ -396,6 +396,9 @@ void prvTraceOnEnd(void);
 #undef OS_TRACE_START
 #define OS_TRACE_START()                            xTraceEnable(TRC_START)
 
+#undef OS_TRACE_START_OPT
+#define OS_TRACE_START_OPT(opt)                     xTraceEnable((opt))
+
 #undef OS_TRACE_STOP
 #define OS_TRACE_STOP()                             xTraceDisable()
 
